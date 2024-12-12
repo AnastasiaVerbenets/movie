@@ -1,0 +1,22 @@
+.header {
+  margin-bottom: 50px;
+}
+
+.header .conatiner {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.btn {
+  padding: 10px 55px;
+  color: white;
+  background-color: rgb(9, 36, 156);
+}
+.form {
+}
+.form__input {
+  font-size: 16;
+  padding: 10px;
+  border: 1px solid grey;
+}
