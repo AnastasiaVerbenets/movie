@@ -1,0 +1,31 @@
+.movies__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 20px;
+}
+
+.movies__item {
+  width: 330px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movies__img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.movies__btn {
+  padding: 8px 25px;
+  margin-top: 10px;
+}
