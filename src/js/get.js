@@ -5,26 +5,37 @@ const list = document.getElementById('list');
 
 allBtn.addEventListener('click', allBtnClick);
 
-function fetchMovies() {
-  return fetch(`${BASE_URL}/movies`).then(r => r.json());
+async function fetchMovies() {
+  const response = await fetch(`${BASE_URL}/movies`);
+
+  if (!response.ok) {
+    throw new Error('Fail to fetch');
+  }
+
+  return await response.json();
 }
 
-function allBtnClick() {
-  fetchMovies().then(renderMovies);
+async function allBtnClick() {
+  try {
+    const movies = await fetchMovies();
+    renderMovies(movies);
+  } catch (error) {
+    console.error('Fail to render');
+  }
 }
 
 function renderMovies(movies) {
-  const markUp = movies.map(movie => {
+  const markUp = movies.map(({ image, title, genre, director, year }) => {
     return `
       <li class="movies__item">
         <div class="movies__thumb">
-          <img src="${movie.img}" alt="movie" class="movies__img"  onerror="this.src='https://via.placeholder.com/150';"/>
-          <h2 class="movies__title"><b>Title: ${movie.title}</b></h2>
-          <p class="movies__genre"><b>Genre: ${movie.genre}</b></p>
+          <img src="${image}" alt="movie" class="movies__img"  onerror="this.src='https://via.placeholder.com/150';"/>
+          <h2 class="movies__title"><b>Title: ${title}</b></h2>
+          <p class="movies__genre"><b>Genre: ${genre}</b></p>
           <p class="movies__director">
-            <b>Director: ${movie.director}</b>
+            <b>Director: ${director}</b>
           </p>
-          <p class="movies__year"><b>Year: ${movie.year}</b></p>
+          <p class="movies__year"><b>Year: ${year}</b></p>
         </div>
         <div>
           <button class="movies__btn" type="button" id="edit-btn">Edit</button>
